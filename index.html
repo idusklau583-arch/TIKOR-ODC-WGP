@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tikor ODC — Telkom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Routing -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 dark:text-white">
+
+    <!-- LOGIN -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <h2 class="text-xl font-bold mb-4 text-center">LOGIN SYSTEM</h2>
+
+            <input id="loginUser" placeholder="Username" class="input" />
+            <input id="loginPass" type="password" placeholder="Password" class="input" />
+
+            <select id="loginRole" class="input">
+                <option value="admin">Admin</option>
+                <option value="teknisi">Teknisi</option>
+            </select>
+
+            <button onclick="doLogin()" class="btn-login">MASUK</button>
+
+            <p class="text-xs text-center mt-3 text-gray-400">
+                Admin : admin / 12345<br /> Teknisi : teknisi / 11111
+            </p>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="bg-red-600 p-3 text-white flex justify-between items-center">
+        <b>Tikor ODC</b>
+        <div class="flex gap-2">
+            <button onclick="exportExcel()" class="btn text-sm px-3 py-1">Excel</button>
+            <button onclick="toggleDark()" class="btn text-sm px-3 py-1">🌙</button>
+            <button onclick="logout()" class="btn text-sm px-3 py-1">Logout</button>
+        </div>
+    </header>
+
+    <!-- SEARCH -->
+    <div class="p-3 bg-white dark:bg-gray-800 flex gap-2">
+        <input id="qSearch" placeholder="Cari ODC..." class="input w-full text-sm" />
+        <button onclick="doSearch()" class="btn text-sm px-3 py-1">Cari</button>
+    </div>
+
+    <!-- MENU -->
+    <div class="flex justify-center gap-2 p-3 bg-white dark:bg-gray-800 flex-wrap">
+        <button class="menu-btn text-sm px-3 py-1" onclick="showMenu('mapMenu')">Peta</button>
+        <button class="menu-btn text-sm px-3 py-1" onclick="showMenu('tableMenu')">Daftar</button>
+        <button class="menu-btn text-sm px-3 py-1" onclick="showMenu('formMenu')" id="btnForm">Tambah Data</button>
+    </div>
+
+    <!-- MAP -->
+    <section id="mapMenu" class="menu-section">
+        <div class="flex gap-2 mb-2 flex-wrap">
+            <button onclick="locateMe()" class="btn text-sm px-3 py-1">📍 Lokasi Saya</button>
+
+            <select id="navMode" class="input w-40 text-sm">
+                <option value="driving">🚗 Mobil</option>
+                <option value="motorcycle">🏍 Motor</option>
+                <option value="walking">🚶 Jalan</option>
+            </select>
+
+            <button onclick="clearRoute()" class="btn bg-gray-600 text-sm px-3 py-1">❌ Rute</button>
+        </div>
+
+        <div id="map"></div>
+    </section>
+
+    <!-- TABLE -->
+    <section id="tableMenu" class="menu-section hidden overflow-auto max-h-[300px]">
+        <table class="w-full text-sm border border-gray-300 dark:border-gray-700 table-auto">
+            <thead class="bg-gray-200 dark:bg-gray-700 sticky top-0">
+                <tr>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Nama</th>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Kode</th>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Lokasi</th>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Latitude</th>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Longitude</th>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Foto</th>
+                    <th class="p-1 border border-gray-300 dark:border-gray-700">Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+        </table>
+    </section>
+
+    <!-- FORM -->
+    <section id="formMenu" class="menu-section hidden max-w-md mx-auto">
+        <input id="nama" placeholder="Nama ODC" class="input text-sm" />
+        <input id="kode" placeholder="Kode ODC" class="input text-sm" />
+        <input id="lokasi" placeholder="Lokasi" class="input text-sm" />
+        <input id="lat" placeholder="Latitude" class="input text-sm" />
+        <input id="lng" placeholder="Longitude" class="input text-sm" />
+        <input id="foto" type="file" accept="image/*" capture="environment" class="input text-sm" />
+
+        <div class="flex gap-2">
+            <button onclick="simpan()" class="btn bg-green-600 w-full text-sm px-3 py-1">Simpan</button>
+            <button onclick="fillWithMyLocation()" class="btn bg-gray-600 w-full text-sm px-3 py-1">GPS</button>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

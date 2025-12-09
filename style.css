@@ -1,0 +1,87 @@
+.menu-btn {
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: #e5e7eb;
+    font-weight: 600;
+    min-width: 80px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    box-sizing: border-box;
+}
+
+.menu-section {
+    padding: 12px;
+}
+
+#map {
+    height: 450px;
+    border-radius: 12px;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    background: black;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.btn-xs {
+    background: #111827;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+.btn-gmaps {
+    background: #22c55e;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-screen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #b91c1c, #7f1d1d);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.login-box {
+    background: white;
+    color: black;
+    padding: 24px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 320px;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 10px;
+    background: #16a34a;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
